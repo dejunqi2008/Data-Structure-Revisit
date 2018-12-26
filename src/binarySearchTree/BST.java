@@ -32,11 +32,9 @@ public class BST<E extends Comparable<E>> {
         return containsHelper(root, e);
     }
 
-    public E remove(E e) {
-
-        return null;
+    public void remove(E e) {
+        removeHelper(root, e);
     }
-
 
     public E removeMin() {
         E res = minimum();
@@ -84,6 +82,39 @@ public class BST<E extends Comparable<E>> {
     }
 
     /***************** private methods *******************************************/
+
+    private TreeNode removeHelper(TreeNode node, E e) {
+        if (node == null) {
+            return null;
+        }
+        int cmp = e.compareTo((E)node.e);
+        if (cmp < 0) {
+            node.left = removeHelper(node.left, e);
+            return node;
+        } else if (cmp > 0) {
+            node.right = removeHelper(node.right, e);
+            return node;
+        } else { // we found the node that we want to remove
+            if (node.left == null) {
+                TreeNode right = node.right;
+                node.right = null;
+                size -= 1;
+                return right;
+            }
+            if (node.right == null) {
+                TreeNode left = node.left;
+                node.left = null;
+                size -= 1;
+                return left;
+            }
+            TreeNode successor = minHelper(node.right);
+            successor.right = removeMinHelper(node.right);
+            successor.left = node.left;
+            node.left = node.right = null;
+            return successor;
+        }
+
+    }
 
     private TreeNode removeMinHelper(TreeNode node) {
         if (node.left == null) {

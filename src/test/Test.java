@@ -142,11 +142,15 @@ public class Test {
         bst.add(7);
         bst.add(4);
         bst.add(15);
+
         System.out.println(bst.contains(7));
         ArrayList<Integer> res = bst.inOrder();
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println(res.get(i));
-        }
+        System.out.println(res);
+
+        bst.remove(8);
+        System.out.println(bst.contains(8));
+        ArrayList<Integer> list = bst.inOrder();
+        System.out.println(list);
     }
 
     public static void testRemoveBST() {
