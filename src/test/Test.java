@@ -1,5 +1,7 @@
 package test;
 
+import binarySearchTree.BST;
+import binarySearchTree.TreeNode;
 import linkedlist.LinkedList;
 import queue.ArrayQueue;
 import queue.LinkedListQueue;
@@ -9,6 +11,7 @@ import stack.ArrayStack;
 import stack.LinkedListStack;
 import stack.Stack;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Test {
@@ -31,7 +34,7 @@ public class Test {
         System.out.println(testStack(stack2, optCnt));
     }
 
-    private static double testStack(Stack<Integer> stack, int optCnt) {
+    public static double testStack(Stack<Integer> stack, int optCnt) {
         long startTime = System.nanoTime();
         Random random = new Random();
         for (int i = 0; i < optCnt; i++) {
@@ -45,7 +48,7 @@ public class Test {
         return (endTime - startTime) / 1000000000.0;
 
     }
-    private static void simpleTestStack() {
+    public static void simpleTestStack() {
         ArrayStack<Integer> stack = new ArrayStack<>();
         for (int i = 0; i < 5; i++) {
             stack.push(i);
@@ -56,7 +59,7 @@ public class Test {
         System.out.println(stack);
     }
 
-    private static void simpleTestArrayQueue() {
+    public static void simpleTestArrayQueue() {
         ArrayQueue<Integer> queue = new ArrayQueue<>();
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
@@ -67,7 +70,7 @@ public class Test {
         System.out.println(queue);
     }
 
-    private static void soimpleTestLoopQueue() {
+    public static void soimpleTestLoopQueue() {
         LoopQueue<Integer> queue = new LoopQueue<>();
         for (int i = 0; i < 15; i++) {
             queue.enqueue(i);
@@ -90,7 +93,7 @@ public class Test {
     }
 
     // test operation time for different queue implementations
-    private static double testQueue(Queue<Integer> q, int opCnt) {
+    public static double testQueue(Queue<Integer> q, int opCnt) {
         long startTime = System.nanoTime();
 
         // operation
@@ -108,7 +111,7 @@ public class Test {
 
     }
 
-    private static void simleTestLinkedList() {
+    public static void simleTestLinkedList() {
         LinkedList<Integer> list = new LinkedList<>();
         for (int i = 0; i < 6; i++) {
             list.addLast(i);
@@ -120,7 +123,7 @@ public class Test {
         System.out.println(list);
     }
 
-    private static void testLinkedListQueue() {
+    public static void testLinkedListQueue() {
         LinkedListQueue<Integer> queue = new LinkedListQueue<>();
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
@@ -129,5 +132,23 @@ public class Test {
 
         int num = queue.dequeue();
         System.out.println(queue);
+    }
+
+
+    public static void simpleTestBST() {
+        BST<Integer> bst = new BST<>();
+        bst.add(10);
+        bst.add(8);
+        bst.add(9);
+        bst.add(7);
+        bst.add(4);
+        bst.add(15);
+        System.out.println(bst.contains(7));
+        ArrayList<Integer> res = bst.inOrder();
+        res = bst.preOrder();
+        for (int i = 0; i < res.size(); i++) {
+            System.out.println(res.get(i));
+        }
+
     }
 }
