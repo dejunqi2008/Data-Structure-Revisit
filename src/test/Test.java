@@ -1,7 +1,6 @@
 package test;
 
 import binarySearchTree.BST;
-import binarySearchTree.TreeNode;
 import linkedlist.LinkedList;
 import queue.ArrayQueue;
 import queue.LinkedListQueue;
@@ -34,7 +33,7 @@ public class Test {
         System.out.println(testStack(stack2, optCnt));
     }
 
-    public static double testStack(Stack<Integer> stack, int optCnt) {
+    private static double testStack(Stack<Integer> stack, int optCnt) {
         long startTime = System.nanoTime();
         Random random = new Random();
         for (int i = 0; i < optCnt; i++) {
@@ -145,10 +144,28 @@ public class Test {
         bst.add(15);
         System.out.println(bst.contains(7));
         ArrayList<Integer> res = bst.inOrder();
-        res = bst.preOrder();
         for (int i = 0; i < res.size(); i++) {
             System.out.println(res.get(i));
         }
+    }
 
+    public static void testRemoveBST() {
+        BST<Integer> bst = new BST<>();
+        Random random = new Random();
+        int n = 1000;
+        for (int i = 0; i < 1000; i++) {
+            bst.add(random.nextInt(10000));
+        }
+        ArrayList<Integer> nums = new ArrayList<>();
+        while (!bst.isEmpty()) {
+            nums.add(bst.removeMin());
+        }
+        // System.out.println(nums);
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums.get(i - 1) > nums.get(i)) {
+                throw new IllegalArgumentException("Error");
+            }
+        }
+        System.out.println("Correct!");
     }
 }

@@ -1,18 +1,15 @@
 package binarySearchTree;
 
-
 import stack.LinkedListStack;
-import stack.Stack;
-
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 public class BST<E extends Comparable<E>> {
 
-
     private TreeNode root;
     private int size;
-
-
 
     public BST() {
         root = null;
@@ -35,10 +32,42 @@ public class BST<E extends Comparable<E>> {
         return containsHelper(root, e);
     }
 
+    public E remove(E e) {
+
+        return null;
+    }
+
+
+    public E removeMin() {
+        E res = minimum();
+        root = removeMinHelper(root);
+        return res;
+    }
+
+    public E removeMax() {
+        E res = maximum();
+        root = removeMaxHelper(root);
+        return res;
+    }
+
+    public E minimum() {
+        if (size == 0) {
+            throw new IllegalArgumentException("Tree is empty");
+        }
+        return minHelper(root).e;
+    }
+
+    public E maximum() {
+        if (size == 0) {
+            throw new IllegalArgumentException("Tree is empty");
+        }
+        return maxHelper(root).e;
+    }
 
     public ArrayList<E> preOrder() {
         ArrayList<E> list = new ArrayList<>();
-        preOrderHelper(root, list);
+        // preOrderHelper(root, list);
+        preOrderHelperIterative(root, list);
         return list;
     }
 
@@ -48,6 +77,58 @@ public class BST<E extends Comparable<E>> {
         return list;
     }
 
+    public ArrayList<E> postOrder() {
+        ArrayList<E> list = new ArrayList<>();
+        postOrderHelper(root, list);
+        return list;
+    }
+
+    /***************** private methods *******************************************/
+
+    private TreeNode removeMinHelper(TreeNode node) {
+        if (node.left == null) {
+            TreeNode rightNode = node.right;
+            node.right = null;
+            size -= 1;
+            return rightNode;
+        }
+        node.left = removeMinHelper(node.left);
+        return node;
+    }
+
+    private TreeNode removeMaxHelper(TreeNode node) {
+        if (node.right == null) {
+            TreeNode left = node.left;
+            node.left = null;
+            size -= 1;
+            return left;
+        }
+        node.right = removeMaxHelper(node.right);
+        return node;
+    }
+
+    private TreeNode<E> minHelper(TreeNode node) {
+        if (node.left == null) {
+            return node;
+        }
+        return minHelper(node.left);
+    }
+
+    private TreeNode<E> maxHelper(TreeNode node) {
+        if (node.right == null) {
+            return node;
+        }
+        return maxHelper(node.right);
+    }
+
+    private void postOrderHelper(TreeNode node, ArrayList<E> list) {
+        if (node == null) {
+            return;
+        }
+        postOrderHelper(node.left, list);
+        postOrderHelper(node.right, list);
+        list.add((E)node.e);
+    }
 
     private void inOrderHelper(TreeNode node, ArrayList<E> list) {
         if (node == null) {
@@ -58,6 +139,21 @@ public class BST<E extends Comparable<E>> {
         inOrderHelper(node.right, list);
     }
 
+    private void levelOrderHelper(TreeNode node, ArrayList<E> list) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode cur = queue.poll();
+            list.add((E)cur.e);
+            if (cur.left != null) {
+                queue.add(cur.left);
+            }
+            if (cur.right != null) {
+                queue.add(cur.right);
+            }
+        }
+    }
+
 
     private void preOrderHelper(TreeNode node, ArrayList<E> list) {
         if (node == null) {
@@ -66,6 +162,21 @@ public class BST<E extends Comparable<E>> {
         list.add((E)node.e);
         preOrderHelper(node.left, list);
         preOrderHelper(node.right, list);
+    }
+
+    private void preOrderHelperIterative(TreeNode node, ArrayList<E> list) {
+        LinkedListStack<TreeNode> stack = new LinkedListStack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            list.add((E)cur.e);
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if (cur.left != null) {
+                stack.push(cur.left);
+            }
+        }
     }
 
 
