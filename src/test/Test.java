@@ -5,6 +5,7 @@ import linkedlist.LinkedList;
 import map.BSTMap;
 import map.ListMap;
 import map.Map;
+import maxheap.MaxHeap;
 import queue.ArrayQueue;
 import queue.LinkedListQueue;
 import queue.LoopQueue;
@@ -246,6 +247,40 @@ public class Test {
         System.out.println();
 
         System.out.println(map.getSize());
+
+    }
+
+    public void testMaxHeap() {
+        int[] arr = {8, 10, 7, 1, 12, 13, 0, 9, 6};
+        MaxHeap<Integer> heap = new MaxHeap<>();
+        for (int i = 0; i < arr.length; i++) {
+            heap.add(arr[i]);
+        }
+        System.out.println(heap);
+        System.out.println();
+
+        while (!heap.isEmpty()) {
+            int max = heap.popMax();
+            System.out.print(max + " ");
+            System.out.println(heap);
+            System.out.println();
+        }
+
+
+        int n = 1000000;
+        Random random = new Random();
+        for (int i = 0; i < n; i++) {
+            heap.add(random.nextInt(Integer.MAX_VALUE));
+        }
+        int prev = Integer.MAX_VALUE;
+        while (!heap.isEmpty()) {
+            int cur = heap.popMax();
+            if (cur > prev) {
+                System.out.println("Error");
+                break;
+            }
+            prev = cur;
+        }
 
     }
 }
