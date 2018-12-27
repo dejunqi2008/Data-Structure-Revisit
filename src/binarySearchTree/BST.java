@@ -90,10 +90,10 @@ public class BST<E extends Comparable<E>> {
         int cmp = e.compareTo((E)node.e);
         if (cmp < 0) {
             node.left = removeHelper(node.left, e);
-            return node;
+
         } else if (cmp > 0) {
             node.right = removeHelper(node.right, e);
-            return node;
+
         } else { // we found the node that we want to remove
             if (node.left == null) {
                 TreeNode right = node.right;
@@ -107,12 +107,11 @@ public class BST<E extends Comparable<E>> {
                 size -= 1;
                 return left;
             }
-            TreeNode successor = minHelper(node.right);
-            successor.right = removeMinHelper(node.right);
-            successor.left = node.left;
-            node.left = node.right = null;
-            return successor;
+            TreeNode minNode = minHelper(node.right);
+            node.e = minNode.e;
+            node.right = removeHelper(node.right, (E)minNode.e);
         }
+        return node;
 
     }
 

@@ -6,6 +6,8 @@ import queue.ArrayQueue;
 import queue.LinkedListQueue;
 import queue.LoopQueue;
 import queue.Queue;
+import set.Set;
+import set.TreeSet;
 import stack.ArrayStack;
 import stack.LinkedListStack;
 import stack.Stack;
@@ -171,5 +173,27 @@ public class Test {
             }
         }
         System.out.println("Correct!");
+    }
+
+    public void testBSTSet() {
+
+        Integer[] nums = {10, 8, 3, 15, 9, 7, 7, 7, 7, 2, 14, 17};
+        Set<Integer> set = new TreeSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            set.add(nums[i]);
+        }
+
+        System.out.println("Array length  " + nums.length);
+        System.out.println("Unique number: " + set.getSize());
+
+        System.out.println(set);
+
+
+        int target = 10;
+        set.remove(target);
+        System.out.println("Size: " + set.getSize());
+
+        System.out.println(set);
+        System.out.println(set.contains(target));
     }
 }

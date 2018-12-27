@@ -1,7 +1,7 @@
 package set;
 
 public interface Set<E> {
-    void addd(E e);
+    void add(E e);
     void remove(E e);
     boolean contains(E e);
     int getSize();
