@@ -2,6 +2,9 @@ package test;
 
 import binarySearchTree.BST;
 import linkedlist.LinkedList;
+import map.BSTMap;
+import map.ListMap;
+import map.Map;
 import queue.ArrayQueue;
 import queue.LinkedListQueue;
 import queue.LoopQueue;
@@ -195,5 +198,54 @@ public class Test {
 
         System.out.println(set);
         System.out.println(set.contains(target));
+    }
+
+    public void testListMap() {
+        Map<String, Integer> map = new ListMap<>();
+        String[] arr = {"Apple", "Orange", "Banana", "Melon", "Apple", "Orange"};
+        String[] keys = {"Apple", "Orange", "Banana", "Melon"};
+        for (String w : arr) {
+            if (map.contains(w)) {
+                map.set(w, map.get(w) + 1);
+            } else {
+                map.add(w, 1);
+            }
+        }
+
+        for (String w : keys) {
+            System.out.println(w + " : " + map.get(w));
+        }
+
+        map.remove("Apple");
+        for (String w : keys) {
+            System.out.println(w + " : " + map.get(w));
+        }
+    }
+
+    public void testBSTMap() {
+        Map<String, Integer> map = new BSTMap<>();
+        String[] arr = {"Apple", "Orange", "Banana", "Melon", "Apple", "Orange"};
+        String[] keys = {"Apple", "Orange", "Banana", "Melon"};
+        for (String w : arr) {
+            if (map.contains(w)) {
+                map.set(w, map.get(w) + 1);
+            } else {
+                map.add(w, 1);
+            }
+        }
+
+        for (String w : keys) {
+            System.out.println(w + " : " + map.get(w));
+        }
+        System.out.println(map.getSize());
+
+        map.remove("Apple");
+        for (String w : keys) {
+            System.out.println(w + " : " + map.get(w));
+        }
+        System.out.println();
+
+        System.out.println(map.getSize());
+
     }
 }
