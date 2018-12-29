@@ -15,6 +15,7 @@ import set.TreeSet;
 import stack.ArrayStack;
 import stack.LinkedListStack;
 import stack.Stack;
+import trie.MapSum;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -281,6 +282,21 @@ public class Test {
             }
             prev = cur;
         }
+
+    }
+
+
+    public void testMapSum() {
+
+        MapSum mpsum = new MapSum();
+        mpsum.insert("apple", 3);
+        int cnt1 = mpsum.sum("ap");
+        System.out.println(cnt1);
+
+        mpsum.insert("app", 2);
+        int cnt2 = mpsum.sum("ap");
+        System.out.println(cnt2);
+
 
     }
 }
