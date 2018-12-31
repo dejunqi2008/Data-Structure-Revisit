@@ -10,6 +10,8 @@ import queue.ArrayQueue;
 import queue.LinkedListQueue;
 import queue.LoopQueue;
 import queue.Queue;
+import segmentTree.Operator;
+import segmentTree.SegmentTree;
 import set.Set;
 import set.TreeSet;
 import stack.ArrayStack;
@@ -297,6 +299,20 @@ public class Test {
         int cnt2 = mpsum.sum("ap");
         System.out.println(cnt2);
 
+    }
+
+    public void testSegmentTree() {
+        Integer[] nums = {-2, 0, 3, -5, 2, -1};
+        SegmentTree<Integer> segTree = new SegmentTree<>(nums, new Operator<Integer>() {
+            @Override
+            public Integer operate(Integer a, Integer b) {
+                return a + b;
+            }
+        });
+
+        String res = segTree.toString();
+        System.out.println(res);
+        System.out.println(segTree.query(0, 5));
 
     }
 }
