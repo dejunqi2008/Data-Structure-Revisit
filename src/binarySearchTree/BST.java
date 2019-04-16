@@ -8,6 +8,18 @@ import java.util.Queue;
 
 public class BST<E extends Comparable<E>> {
 
+    private class TreeNode {
+        public E e;
+        public TreeNode left, right;
+
+        public TreeNode(E e) {
+            this.e = e;
+            left = null;
+            right = null;
+        }
+    }
+
+
     private TreeNode root;
     private int size;
 
@@ -137,14 +149,14 @@ public class BST<E extends Comparable<E>> {
         return node;
     }
 
-    private TreeNode<E> minHelper(TreeNode node) {
+    private TreeNode minHelper(TreeNode node) {
         if (node.left == null) {
             return node;
         }
         return minHelper(node.left);
     }
 
-    private TreeNode<E> maxHelper(TreeNode node) {
+    private TreeNode maxHelper(TreeNode node) {
         if (node.right == null) {
             return node;
         }
