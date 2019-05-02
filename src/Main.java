@@ -1,9 +1,11 @@
 
 import test.Test;
+import graph.Solution;
 
 public class Main {
     public static void main(String[] agrs) {
-        Test testObj = new Test();
-        testObj.testSegmentTree();
+
+        Solution obj = new Solution();
+        obj.test();
     }
 }
