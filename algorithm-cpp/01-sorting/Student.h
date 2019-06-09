@@ -1,8 +1,6 @@
 #ifndef SELECTIONSORT_STUDENT_H
 #define SELECTIONSORT_STUDENT_H
 
-
-
 using namespace std;
 
 struct Student {
