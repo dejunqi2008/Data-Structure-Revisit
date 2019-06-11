@@ -28,7 +28,8 @@ int main(void) {
     cout << p1->getX() << endl;
 
     // 直接使用对象变量访问对象成员使用 点
-    cout << point.getX() << endl;
+    cout << pointA.getX() << endl;
+
     return 0;
 }
 

@@ -11,7 +11,7 @@ def run(path):
     # print command
     os.system(command)
     if not os.path.exists("./out/main.out"):
-        print "OSError: failed to execute \'" + command + "\'"
+        print "\nOSError: failed to execute \'" + command + "\'  function exist"
         return
     os.system("./out/main.out && rm ./out/main.out");
 
