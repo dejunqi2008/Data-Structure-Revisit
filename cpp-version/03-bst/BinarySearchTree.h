@@ -15,7 +15,7 @@ public:
 
 
     ~BST() {
-        // TODO:
+        destroy(root);
     }
 
     int size() {return count;}
@@ -27,7 +27,7 @@ public:
     }
 
     void remove(Key key) {
-        removeHelper(root, key);
+        root = removeHelper(root, key);
     }
 
     Value get(Key key) {
@@ -63,7 +63,7 @@ public:
 
     vector<Key> traverse() {
         vector<Key> res;
-        traverseHelper(res, root);
+        inorder(res, root);
         return res;
     }
 
@@ -78,6 +78,13 @@ private:
             this->key = key;
             this->value = val;
             this->left = this->right = NULL;
+        }
+
+        Node(Node * node) {
+            this->key = node->key;
+            this->value = node->value;
+            this->left = node->left;
+            this->right = node->right;
         }
     };
     Node *root;
@@ -105,43 +112,60 @@ private:
             return NULL;
         }
 
-        if (node->key < key) {
+        if (key < node->key) {
             node->left = removeHelper(node->left, key);
-        } else if (node->key > key) {
+        } else if (key > node->key) {
             node->right = removeHelper(node->right, key);
         } else {
-            if (node->lefy == NULL) {
-                return node->right;
+            if (node->left == NULL) {
+                count--;
+                Node* rightNode = node->right;
+                delete node;
+                return rightNode;
             }
             if (node->right == NULL) {
-                return node->left;
+                count--;
+                Node* leftNode = node->left;
+                delete node;
+                return leftNode;
             }
             Node *minNode = findMin(node->right);
+            node->key = minNode->key;
             node->value = minNode->value;
             node->right = removeHelper(node->right, minNode->key);
         }
-
+        count--;
         return node;
+
     }
 
     Node * findMin(Node *node) {
         Node *cur = node;
-        while (cur != NULL) {
+        while (cur->left != NULL) {
             cur = cur->left;
         }
         return cur;
     }
 
-    void traverseHelper(vector<Key> &res, Node* node) {
+    void inorder(vector<Key> &res, Node* node) {
         if (node == NULL) {
             return;
         }
-        traverseHelper(res, node->left);
+        inorder(res, node->left);
         res.push_back(node->key);
-        traverseHelper(res, node->right);
+
+        inorder(res, node->right);
     }
 
+    void destroy(Node* node) {
+        if (node != NULL) {
+            destroy(node->left);
+            destroy(node->right);
 
+            delete node;
+            count--;
+        }
+    }
 };
 
 

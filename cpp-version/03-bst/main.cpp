@@ -6,6 +6,14 @@
 using namespace std;
 
 
+void printarr(vector<int> arr) {
+    for (int i = 0; i < arr.size(); i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+
 int main(void) {
 
     BST<int, string> bst = BST<int, string>();
@@ -18,10 +26,15 @@ int main(void) {
     bst.insert(21, "i");
 
     vector<int> res = bst.traverse();
+    printarr(res);
 
-    for (int i = 0; i < res.size(); i++) {
-        cout << res[i] << " ";
-    }
-    cout << endl;
+    bst.remove(10);
+    printarr(bst.traverse());
+
+    bst.remove(19);
+    printarr(bst.traverse());
+
+    // bst.remove(10);
+    // printarr(bst.traverse());
     return 0;
 }
