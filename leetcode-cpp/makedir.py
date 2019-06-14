@@ -23,7 +23,7 @@ def makedir(arg):
     print problename
 
     title = num + "-" + problename
-    if os.path.exist(title):
+    if os.path.isdir(title):
         print "Folder already exist."
         return
     command1 = "mkdir " + title
