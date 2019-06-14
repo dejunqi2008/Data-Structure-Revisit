@@ -2,7 +2,7 @@ import sys
 import os
 
 def makedir(arg):
-    print(arg)
+    
     num = arg[1]
     if "." in num:
         num = num[:-1]
@@ -23,6 +23,9 @@ def makedir(arg):
     print problename
 
     title = num + "-" + problename
+    if os.path.exist(title):
+        print "Folder already exist."
+        return
     command1 = "mkdir " + title
     command2 = "cp solution_template.cpp " + title + "/" + "solution.cpp"
     os.system(command1)
