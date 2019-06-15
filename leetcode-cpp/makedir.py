@@ -27,7 +27,7 @@ def makedir(arg):
         print "Folder already exist."
         return
     command1 = "mkdir " + title
-    command2 = "cp solution_template.cpp " + title + "/" + "solution.cpp"
+    command2 = "cp utils/solution_template.cpp " + title + "/" + "solution.cpp"
     os.system(command1)
     os.system(command2)
 
