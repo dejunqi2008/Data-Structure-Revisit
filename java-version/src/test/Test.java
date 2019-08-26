@@ -1,6 +1,8 @@
 package test;
 
 import binarySearchTree.BST;
+import graph.Solution;
+import graph.adjmatrix.Graph;
 import linkedlist.LinkedList;
 import map.BSTMap;
 import map.ListMap;
@@ -313,6 +315,5 @@ public class Test {
         String res = segTree.toString();
         System.out.println(res);
         System.out.println(segTree.query(0, 5));
-
     }
 }
