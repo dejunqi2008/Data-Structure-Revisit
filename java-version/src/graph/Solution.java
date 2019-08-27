@@ -1,15 +1,21 @@
 package graph;
 
-//import graph.adjmatrix.Graph;
-//import graph.adjList.Graph;
 import graph.adjTreeSet.Graph;
-
+import java.util.ArrayList;
 
 
 public class Solution {
     public void test() {
-        Graph graph = new Graph("/Users/dejunqi/Documents/personal-work/data-structure-algorithm/java-version/src/graph/graph_edge_list.txt");
-        System.out.println(graph.toString());
+        String path = "/Users/dejunqi/Documents/work/data-structure-algorithm/java-version/src/graph/";
+        String filename = "graph_edge_list_03.txt";
+        Graph graph = new Graph(path + filename);
+        // System.out.println(graph.toString());
+        System.out.println("\n");
+        // ArrayList<Integer> res = graph.orders();
+        // System.out.println(res);
+        // System.out.println(graph.isConnected(0, 5));
+        // System.out.println(graph.connectedComponents());
+        System.out.println(graph.isBipartite());
     }
 
 }

@@ -1,7 +1,10 @@
 package graph.adjTreeSet;
 
+import graph.graphHelperMthods.GraphUtilsPartOne;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -10,9 +13,10 @@ public class Graph {
     private int V;
     private int E;
     private  TreeSet<Integer>[] adj;
+    private GraphUtilsPartOne helpersPartOne;
 
     public Graph(String filename) {
-
+        helpersPartOne = new GraphUtilsPartOne();
         File file = new File(filename);
         Scanner scanner;
         try {
@@ -42,6 +46,22 @@ public class Graph {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Integer> orders() {
+        return helpersPartOne.traverseDFS(this, false);
+    }
+
+    public boolean isConnected(int u, int v) {
+        return helpersPartOne.isConnected(this, u, v);
+    }
+
+    public int connectedComponents() {
+        return helpersPartOne.connectedComponents(this);
+    }
+
+    public boolean isBipartite() {
+        return helpersPartOne.isBipartite(this);
     }
 
 
