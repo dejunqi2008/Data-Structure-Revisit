@@ -1,6 +1,7 @@
 package graph.adjTreeSet;
 
 import graph.graphHelperMthods.GraphUtilsPartOne;
+import graph.graphHelperMthods.GraphUtilsPartTwo;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,9 +15,12 @@ public class Graph {
     private int E;
     private  TreeSet<Integer>[] adj;
     private GraphUtilsPartOne helpersPartOne;
+    private GraphUtilsPartTwo helpersPartTwo;
 
     public Graph(String filename) {
         helpersPartOne = new GraphUtilsPartOne();
+        helpersPartTwo = new GraphUtilsPartTwo();
+
         File file = new File(filename);
         Scanner scanner;
         try {
@@ -49,7 +53,8 @@ public class Graph {
     }
 
     public ArrayList<Integer> orders() {
-        return helpersPartOne.traverseDFS(this, false);
+        // return helpersPartOne.traverseDFS(this, false);
+        return helpersPartTwo.traverseBFS(this);
     }
 
     public boolean isConnected(int u, int v) {
