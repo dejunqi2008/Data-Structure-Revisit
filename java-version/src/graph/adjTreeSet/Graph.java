@@ -6,6 +6,7 @@ import graph.graphHelperMthods.GraphUtilsPartTwo;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -69,6 +70,9 @@ public class Graph {
         return helpersPartOne.isBipartite(this);
     }
 
+    public List<Integer> hasHamiltonLoop() {
+        return helpersPartTwo.hasHamiltonLoop(this);
+    }
 
     private void validateVertex(int u, int v) {
         if (v < 0 || v >= V) {
